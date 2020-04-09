@@ -1,0 +1,67 @@
+.back-img {
+  height: 88vh;
+  background: url("../../images/man_test.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.hero-text {
+  padding: 80px;
+}
+
+.hero-text p {
+  font-size: 50px;
+  color: #fff;
+}
+
+.hero-text h1 {
+  font-size: 80px;
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: 0.2rem;
+  color: #C5AB00;
+}
+
+.hero-text a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.hero-text a:hover {
+  color: #fff;
+}
+
+.about-corona {
+  opacity: 0.7;
+  background: #C4C4C4;
+  z-index: 2;
+}
+
+.know-more {
+  background: #192A56;
+  padding: 10px;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.know-more:hover {
+  color: #fff;
+  opacity: 0.9;
+}
+
+@media screen and (max-width: 768px) {
+  .hero-text {
+    padding: 90px;
+  }
+  .hero-text h1 {
+    font-size: 60px;
+  }
+  .hero-text p {
+    font-size: 35px;
+  }
+  .about-corona {
+    display: none;
+  }
+}
+/*# sourceMappingURL=hero.css.map */

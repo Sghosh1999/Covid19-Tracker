@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>CovidTracker - Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- All CSS files -->
+    <link rel="stylesheet" href="{% static 'css/nav/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hero/hero.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hero_stats/hero_stats.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
+    <!-- CSS ends here -->
+</head>
+
+<body>
+
+    <!-- Loader -->
+    <div class="loader"></div>
+    <!-- Loader ends here -->
+
+    <!-- Navbar starts here -->
+    <div class="post-loader hide">
+        <nav id="top">
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+
+            <div class="nav navbar-fixed">
+                <a href="{% url 'index' %}">
+                    <img src="{% static '/images/WHITEDRONE.png' %}" alt="" id="logo1">
+                </a>
+
+                <ul class="nav-links" id="myDiv">
+                    <li class="nav-item"><a href="{% url 'statistics' %}">Statistics</a></li>
+                    <li class="nav-item"><a href="{% url 'symptoms' %}">Symptoms</a></li>
+                    <li class="nav-item"><a href="{% url 'prevention' %}">Preventive Measures</a></li>
+                    <li class="nav-item"><a href="{% url 'map-stats' %}">Map Stats</a></li>
+                    <li class="nav-item"><a href="{% url 'prediction' %}">Prediction</a></li>
+                    <li class="nav-item"><a href="{% url 'faq' %}">FAQ</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Navbar ends here -->
+
+        <!-- Hero Section starts here -->
+        <section class='back-img'>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 hero-text mr-auto">
+                        <p>Heroes Wear</p>
+                        <h1>Masks</h1>
+                        <br>
+                        <a href="#hero-stats" class="know-more">Know More</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 ml-auto about-corona">
+                        <p>Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered
+                            coronavirus.
+                            The best way to
+                            prevent and slow down transmission is be well informed about the COVID-19 virus, the disease
+                            it
+                            causes and how it
+                            spreads.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <!-- Hero Section Ends here -->
+
+            <!-- Hero World Stats Section Starts here -->
+            <h3 id="hero-stats" class='text-center mt-5'> <img src="{% static '/images/world.png' %}" id="world"
+                    class="text-center"> &nbsp;
+                World
+                Statistics</h3>
+            <section class="hero-stats">
+                <div class="top-hero">
+                    <div class="confirmed card p-5">
+                        <h3>Confirmed</h3>
+                        <p>1,225,728</p>
+                    </div>
+                    <div class="active card p-5">
+                        <h3>Active</h3>
+                        <p>905,344</p>
+                    </div>
+                </div>
+                <div class='low-hero'>
+                    <div class="recovered card p-5">
+                        <h3>Recovered</h3>
+                        <p>253,864</p>
+                    </div>
+                    <div class="deaths card p-5">
+                        <h3>Deaths</h3>
+                        <p>66,520</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Hero World Stats Section Ends here -->
+
+            <!-- Hero India Stats Section starts here -->
+            <h3 class='text-center mt-5'> <img src="{% static '/images/india.png' %}" id="india" class="text-center">
+                &nbsp;
+                Indian
+                Statistics</h3>
+            <section class="hero-stats">
+                <div class="top-hero">
+                    <div class="confirmed card p-5">
+                        <h3>Confirmed</h3>
+                        <p>3,588</p>
+                    </div>
+                    <div class="active card p-5">
+                        <h3>Active</h3>
+                        <p>3230</p>
+                    </div>
+                </div>
+                <div class='low-hero'>
+                    <div class="recovered card p-5">
+                        <h3>Recovered</h3>
+                        <p>229</p>
+                    </div>
+                    <div class="deaths card p-5">
+                        <h3>Deaths</h3>
+                        <p>99</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Hero India Stats section ends here -->
+
+            <!-- footer Starts here -->
+            <footer class="footer mt-5">
+                <div class="info-foot">
+                    <div class="name">
+                        <h3>CovidTracker</h3>
+                    </div>
+                    <div class="line-foot"></div>
+                    <div class="links-foot">
+                        <a href="{% url 'symptoms' %}">Symptoms</a>
+                        <a href="{% url 'prevention' %}">Preventive Measures</a>
+                        <a href="{% url 'prevention' %}">FAQ</a>
+                    </div>
+                </div>
+                <div class="name-foot">
+                    <p>tesacoil-covid19.herokuapp.com 2020 All Rights Reserved.</p>
+                </div>
+            </footer>
+
+            <!-- Scroll back to top button -->
+            <!-- <a href="#top" id="topBtn" title="Go to top"><i class="fas fa-arrow-up"></i></a> -->
+            <!-- Scroll ends here -->
+
+    </div>
+    <!-- Footer ends here -->
+    <script src="{% static 'js/nav.js' %}"></script>
+    <script src="{% static 'js/topPage.js' %}"></script>
+    <script src="{% static 'js/loader.js' %}"></script>
+</body>
+
+</html>

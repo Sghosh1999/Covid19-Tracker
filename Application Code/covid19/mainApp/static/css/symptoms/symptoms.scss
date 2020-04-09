@@ -1,0 +1,54 @@
+
+.symptoms-cont {
+    padding: 90px;
+}
+
+.symptoms {
+    display: flex;
+    flex-direction: column;
+}
+
+#s1-img {
+    height: 200px;
+    width: 200px;
+}
+
+.sym-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div {
+        margin: 15px;
+    }
+
+    .card {
+        width: 300px;
+        height: 300px;
+        -webkit-box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+        box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .symptoms-cont {
+        padding: 50px;
+    }
+
+
+    #s1-img {
+        height: 100px;
+        width: 100px;
+    }
+
+    .sym-cont {
+        flex-direction: column;
+
+        .card {
+            width: 200px;
+            height: 200px;
+        }
+    }
+}

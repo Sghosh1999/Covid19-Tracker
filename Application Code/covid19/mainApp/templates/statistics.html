@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% load static %}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CovidTracker - Statistics</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- All CSS files -->
+  <link rel="stylesheet" href="{% static 'css/nav/nav.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/footer/footer.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/dropdown/dropdown.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/statistics/statistics.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
+  <!-- CSS ends here -->
+</head>
+
+<body>
+  <!-- Navbar starts here -->
+  <nav>
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+
+    <div class="nav">
+      <a href="{% url 'index' %}">
+        <img src="{% static '/images/finalLogo.png' %}" alt="" id="logo1">
+      </a>
+
+      <ul class="nav-links">
+        <li class="nav-item active-link">
+          <a href="{% url 'statistics' %}">Statistics</a>
+        </li>
+        <li class="nav-item"><a href="{% url 'symptoms' %}">Symptoms</a></li>
+        <li class="nav-item">
+          <a href="{% url 'prevention' %}">Preventive Measures</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'map-stats' %}">Map Stats</a>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'prediction' %}">Prediction</a>
+        </li>
+        <li class="nav-item"><a href="{% url 'faq' %}">FAQ</a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Navbar ends here -->
+
+  <p class="text-center mt-5 lead">
+    Below are the statistics considering the various parameters about COVID-19
+    around the whole world.
+  </p>
+
+  <p class="text-center">Filter the stats using the below menu.</p>
+
+  <!-- Drop down menu -->
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-sm-4 mx-auto">
+        <div class="box">
+          <select id="graphSelect" onchange="graphChoose()">
+            <option value="g1" selected>World Death Cases Over Time</option>
+            <option value="g2">Confirmed Cases in India</option>
+            <option value="g3">Confirmed Cases(By Country)</option>
+            <option value="g4">Death Cases(By Country)</option>
+            <option value="g5">COVID-19 Cases Over Time(Line Plot)</option>
+            <option value="g6">COVID-19 Cases Over Time(Area Plot)</option>
+            <option value="g7">Confirmed, Recovered and Death Cases in India(By State)</option>
+            <option value="g8">Confirmed VS Deaths in India</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Drop down menu ends here -->
+
+  <!-- Load graph GIF -->
+  <div class="container hide1" id="gif">
+    <div class="row text-center">
+      <div class="col-sm-4 mx-auto">
+        <div class="load-graph">
+          <img src="{% static '/images/load-graph.gif' %}" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Load Graph GIF ends here -->
+
+  <!-- Display all the maps -->
+  <div class="all-graphs mt-5">
+    {% autoescape off %}
+    <div class="container g1">
+      <p class="text-center"><b>World Death Cases Over Time</b></p>
+      <div class="card">
+        <div class="card-body graph-body">
+          <div class="graph">
+            {{plot_div1}}
+          </div>
+          <div class="graph-stat">
+            <h4 class="grap-stat-header">Currently Infected</h4>
+            <b>891,681</b>
+            <h4 class="grap-stat-header">Mild Condition</h4>
+            <b>847,585</b>
+            <h4 class="grap-stat-header">Serious or Critical</h4>
+            <b>44,096</b>
+            <h4 class="grap-stat-header">Recovered or Discharged</h4>
+            <b>246,760</b>
+            <h4 class="grap-stat-header">Deaths</h4>
+            <b>63,747</b>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container g2 hide1">
+      <p class="text-center"><b>Confirmed Cases in India</b></p>
+      <div class="card">
+        <div class="card-body">
+          {{plot_div2}}
+        </div>
+      </div>
+    </div>
+
+    <div class="container g3 hide1">
+      <p class="text-center"><b>Confirmed Cases(By Country)</b></p>
+      <div class="card">
+        <div class="card-body">
+          {{plot_div3}}
+        </div>
+      </div>
+    </div>
+
+    <div class="container g4 hide1">
+      <p class="text-center"><b>Death Cases(By Country)</b></p>
+      <div class="card">
+        <div class="card-body">
+          {{plot_div4}}
+        </div>
+      </div>
+    </div>
+
+    <div class="container g5 hide1">
+      <p class="text-center"><b>COVID-19 Cases Over Time(Line Plot)</b></p>
+      <div class="card">
+        <div class="card-body">
+          {{plot_div5}}
+        </div>
+      </div>
+    </div>
+
+    <div class="container g6 hide1">
+      <p class="text-center"><b>COVID-19 Cases Over Time(Area Plot)</b></p>
+      <div class="card">
+        <div class="card-body">
+          {{plot_div6}}
+        </div>
+      </div>
+    </div>
+
+    <div class="container g7 hide1">
+      <p class="text-center">
+        <b>Confirmed, Recovered and Death Cases in India(By State)</b>
+      </p>
+      <div class="card">
+        <div class="card-body">
+          {{plot_div9}}
+        </div>
+      </div>
+    </div>
+
+    <div class="container g8 hide1">
+      <p class="text-center"><b>Confirmed VS Deaths in India</b></p>
+      <div class="card">
+        <div class="card-body">
+          {{plot_div10}}
+        </div>
+      </div>
+    </div>
+    {% endautoescape %}
+  </div>
+  <!-- Display map ends here -->
+
+  <!-- footer Starts here -->
+  <footer class="footer mt-5">
+    <div class="info-foot">
+      <div class="name">
+        <h3>CovidTracker</h3>
+      </div>
+      <div class="line-foot"></div>
+      <div class="links-foot">
+        <a href="{% url 'symptoms' %}">Symptoms</a>
+        <a href="{% url 'prevention' %}">Preventive Measures</a>
+        <a href="{% url 'prevention' %}">FAQ</a>
+      </div>
+    </div>
+    <div class="name-foot">
+      <p>covidtracker.com 2020 All Rights Reserved.</p>
+    </div>
+  </footer>
+  <!-- Footer ends here -->
+
+  <script src="{% static 'js/nav.js' %}"></script>
+  <script src="{% static 'js/graphs.js' %}"></script>
+</body>
+
+</html>

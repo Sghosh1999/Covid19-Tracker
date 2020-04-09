@@ -1,0 +1,70 @@
+.sec {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.question, .answer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.card {
+  padding: 15px;
+}
+
+.question p {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.arrow1, .arrow2, .arrow3, .arrow4, .arrow5, .arrow6, .arrow7, .arrow8, .arrow9, .arrow10 {
+  font-size: 30px;
+  color: #e84118;
+  cursor: pointer;
+}
+
+.answer {
+  background: #f5f6fa;
+  padding: 10px;
+}
+
+.Q, .A {
+  color: #e84118;
+  height: 30px;
+  width: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin: 5px;
+  font-size: 35px;
+}
+
+.hide {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .jumbotron h2 {
+    font-size: 20px;
+    margin-top: 45px;
+  }
+  .question p {
+    font-size: 16px;
+  }
+  .answer p {
+    font-size: 14px;
+  }
+}
+/*# sourceMappingURL=faq.css.map */

@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+
+<head>
+    <script>
+        L_NO_TOUCH = false;
+        L_DISABLE_3D = false;
+    </script>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CovidTracker - Map Stats</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- All CSS files -->
+    <link rel="stylesheet" href="{% static 'css/nav/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/symptoms/symptoms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
+    <!-- CSS ends here -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js">
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
+    <link rel="stylesheet"
+        href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css" />
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <style>
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+
+        .folium-map {
+               border: 20px solid red;
+               border-radius: 5px;
+        }
+    </style>
+
+    <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        #map_13cced48cde94dad9884568d26e57cd9 {
+            position: relative;
+            width: 73.0%;
+            height: 70.0%;
+            margin: auto;
+        }
+        .folium-map{
+            border: solid 20px #ccc;
+            border-radius: 3px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Navbar starts here -->
+    <nav>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div class="nav">
+            <a href="{% url 'index' %}">
+                <img src="{% static '/images/finalLogo.png' %}" alt="" id="logo1">
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="{% url 'statistics' %}">Statistics</a></li>
+                <li class="nav-item"><a href="{% url 'symptoms' %}">Symptoms</a></li>
+                <li class="nav-item"><a href="{% url 'prevention' %}">Preventive Measures</a></li>
+                <li class="nav-item active-link"><a href="{% url 'map-stats' %}">Map Stats</a></li>
+                <li class="nav-item"><a href="{% url 'prediction' %}">Prediction</a></li>
+                <li class="nav-item"><a href="{% url 'faq' %}">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar ends here -->
+
+    <div class="container mt-5 p-3">
+        <p class="lead text-center">This section shows the impact COVID-19 has created over the World
+            and in India since its apperance. </p>
+    </div>
+
+    <div class="container mt-5">
+        <p class="text-center mt-5"><b>Below animated figure shows the spread of COVID-19 over the time across the whole world.</b></p>
+        <div class="card" style="background: #ccc;">
+            <div class="card-body">
+                {% autoescape off %}
+                {{plot_div8}}
+                {% endautoescape %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <p class="text-center mt-5"><b>Below animated figure shows the deaths due to COVID-19 over the time across the whole world.</b></p>
+        <div class="card" style="background: #ccc;">
+            <div class="card-body">
+                {% autoescape off %}
+                {{plot_div7}}
+                {% endautoescape %}
+            </div>
+        </div>
+    </div>
+
+    <p class="text-center mt-5"><b>Below figure shows the spread of COVID-19 throught India. Hover
+            over the regions to see the details of the impact.
+        </b></p>
+    <div class="folium-map" style="z-index: -100;" id="map_13cced48cde94dad9884568d26e57cd9"></div>
+
+    <!-- Footer Starts here -->
+    <footer class="footer mt-5">
+        <div class="info-foot">
+            <div class="name">
+                <h3>CovidTracker</h3>
+            </div>
+            <div class="line-foot"></div>
+            <div class="links-foot">
+                <a href="{% url 'symptoms' %}">Symptoms</a>
+                <a href="{% url 'prevention' %}">Preventive Measures</a>
+                <a href="{% url 'faq' %}">FAQ</a>
+            </div>
+        </div>
+        <div class="name-foot">
+            <p>covidtracker.com 2020 All Rights Reserved.</p>
+        </div>
+    </footer>
+    <!-- Footer Ends here -->
+
+    <script src="{% static 'js/nav.js' %}"></script>
+</body>
+<script>
+    var map_13cced48cde94dad9884568d26e57cd9 = L.map(
+        "map_13cced48cde94dad9884568d26e57cd9", {
+            center: [20.5937, 78.9629],
+            crs: L.CRS.EPSG3857,
+            zoom: 4,
+            zoomControl: true,
+            preferCanvas: false,
+        }
+    );
+
+    var tile_layer_48c4d38af240443abe34d782bee4bea8 = L.tileLayer(
+        "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png", {
+            "attribution": "\u0026copy; \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"http://cartodb.com/attributions\"\u003eCartoDB\u003c/a\u003e, CartoDB \u003ca href =\"http://cartodb.com/attributions\"\u003eattributions\u003c/a\u003e",
+            "detectRetina": false,
+            "maxNativeZoom": 6,
+            "maxZoom": 6,
+            "minZoom": 4,
+            "noWrap": false,
+            "opacity": 1,
+            "subdomains": "abc",
+            "tms": false
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    var circle_49135ae1c1de4fb6a17dcd84ec641a97 = L.circle(
+        [11.7401, 92.6586], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 3000,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_49135ae1c1de4fb6a17dcd84ec641a97.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Andaman and Nicobar Islands<li><bold>Confirmed cases  : 10<li><bold>Cured cases  : 0<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_bbbebd8b591b47aabe4487879aaaa0b9 = L.circle(
+        [15.9129, 79.74], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 39600,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_bbbebd8b591b47aabe4487879aaaa0b9.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Andhra Pradesh<li><bold>Confirmed cases  : 132<li><bold>Cured cases  : 1<li><bold>Death cases  : 1
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_5edcafd293764873a0525606eaff9645 = L.circle(
+        [28.218000000000004, 94.7278], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 300,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_5edcafd293764873a0525606eaff9645.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Arunachal Pradesh<li><bold>Confirmed cases  : 1<li><bold>Cured cases  : 0<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_67e8bc72a3cf4bd5bc43bdbf6c846298 = L.circle(
+        [26.2006, 92.9376], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 4800,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_67e8bc72a3cf4bd5bc43bdbf6c846298.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Assam<li><bold>Confirmed cases  : 16<li><bold>Cured cases  : 0<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_cf43edbcaafd474cbaec87cd37d8f782 = L.circle(
+        [25.0961, 85.3131], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 7200,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_cf43edbcaafd474cbaec87cd37d8f782.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Bihar<li><bold>Confirmed cases  : 24<li><bold>Cured cases  : 0<li><bold>Death cases  : 1
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_f1c796fae9854875b4d070f2d67f7bad = L.circle(
+        [30.7333, 76.7794], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 5400,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_f1c796fae9854875b4d070f2d67f7bad.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Chandigarh<li><bold>Confirmed cases  : 18<li><bold>Cured cases  : 0<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_63ef799b6b2b41d09b81ef5a2b543dea = L.circle(
+        [21.2787, 81.8661], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 2700,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_63ef799b6b2b41d09b81ef5a2b543dea.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Chhattisgarh<li><bold>Confirmed cases  : 9<li><bold>Cured cases  : 2<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_22c4ac894cb646c8ad5262fd1f6f04cc = L.circle(
+        [28.7041, 77.1025], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 65700,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_22c4ac894cb646c8ad5262fd1f6f04cc.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Delhi<li><bold>Confirmed cases  : 219<li><bold>Cured cases  : 8<li><bold>Death cases  : 4
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_6cf019fd750d4fd39492bb452f1e9379 = L.circle(
+        [15.2993, 74.124], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 1800,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_6cf019fd750d4fd39492bb452f1e9379.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Goa<li><bold>Confirmed cases  : 6<li><bold>Cured cases  : 0<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_19cd2aabf2074bfd9108676fcb638566 = L.circle(
+        [22.2587, 71.1924], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 26100,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_19cd2aabf2074bfd9108676fcb638566.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Gujarat<li><bold>Confirmed cases  : 87<li><bold>Cured cases  : 8<li><bold>Death cases  : 7
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_4426556026af4ab8b81278a1363bd83a = L.circle(
+        [29.0588, 76.0856], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 12900,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_4426556026af4ab8b81278a1363bd83a.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Haryana<li><bold>Confirmed cases  : 43<li><bold>Cured cases  : 21<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_025fc995a6f4465785d3a687c7d8de7d = L.circle(
+        [31.1048, 77.1734], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 1800,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_025fc995a6f4465785d3a687c7d8de7d.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Himachal Pradesh<li><bold>Confirmed cases  : 6<li><bold>Cured cases  : 1<li><bold>Death cases  : 1
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_c2fce6ea688f4297a1cb6dcacf7767be = L.circle(
+        [33.7782, 76.5762], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 21000,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_c2fce6ea688f4297a1cb6dcacf7767be.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Jammu and Kashmir<li><bold>Confirmed cases  : 70<li><bold>Cured cases  : 3<li><bold>Death cases  : 2
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_97bb32ac2f794d71a22b3a2a94861b25 = L.circle(
+        [23.6102, 85.2799], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 600,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_97bb32ac2f794d71a22b3a2a94861b25.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Jharkhand<li><bold>Confirmed cases  : 2<li><bold>Cured cases  : 0<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_8d4e496f7bee4bceabe0fc8d4123e4bc = L.circle(
+        [15.3173, 75.7139], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 37200,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_8d4e496f7bee4bceabe0fc8d4123e4bc.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Karnataka<li><bold>Confirmed cases  : 124<li><bold>Cured cases  : 10<li><bold>Death cases  : 3
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_69d1d5b3414d449993fa8dac40b0ec90 = L.circle(
+        [10.8505, 76.2711], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 85800,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_69d1d5b3414d449993fa8dac40b0ec90.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Kerala<li><bold>Confirmed cases  : 286<li><bold>Cured cases  : 27<li><bold>Death cases  : 2
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_11b85532c57349eea5e13d9d98d97478 = L.circle(
+        [34.2996, 78.2932], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 4200,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_11b85532c57349eea5e13d9d98d97478.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Ladakh<li><bold>Confirmed cases  : 14<li><bold>Cured cases  : 3<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_ad72f3a59c634e66beef7a8f1bc55fb5 = L.circle(
+        [22.9734, 78.6569], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 29700,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_ad72f3a59c634e66beef7a8f1bc55fb5.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Madhya Pradesh<li><bold>Confirmed cases  : 99<li><bold>Cured cases  : 0<li><bold>Death cases  : 6
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_3feacab7d5044109a44a2d2540725064 = L.circle(
+        [19.7515, 75.7139], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 100500,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_3feacab7d5044109a44a2d2540725064.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Maharashtra<li><bold>Confirmed cases  : 335<li><bold>Cured cases  : 42<li><bold>Death cases  : 16
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_02721b925fa6453e9ddb84cffd006f77 = L.circle(
+        [24.6637, 93.9063], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 600,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_02721b925fa6453e9ddb84cffd006f77.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Manipur<li><bold>Confirmed cases  : 2<li><bold>Cured cases  : 0<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_41a2f929d2db483a9d645d06fd2afa29 = L.circle(
+        [23.1645, 92.9376], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 300,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_41a2f929d2db483a9d645d06fd2afa29.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Mizoram<li><bold>Confirmed cases  : 1<li><bold>Cured cases  : 0<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_6f684ab16c094e87992b39086567f32e = L.circle(
+        [20.9517, 85.0985], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 1500,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_6f684ab16c094e87992b39086567f32e.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Odisha<li><bold>Confirmed cases  : 5<li><bold>Cured cases  : 0<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_b27d7d94c84b4608944dc62ab75e19f6 = L.circle(
+        [11.9416, 79.8083], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 900,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_b27d7d94c84b4608944dc62ab75e19f6.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Puducherry<li><bold>Confirmed cases  : 3<li><bold>Cured cases  : 1<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_b00a1e085c8b462cb1ce814b212d3217 = L.circle(
+        [31.1471, 75.3412], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 13800,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_b00a1e085c8b462cb1ce814b212d3217.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Punjab<li><bold>Confirmed cases  : 46<li><bold>Cured cases  : 1<li><bold>Death cases  : 4
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_c55e5df7075540e3920f6f7966635e00 = L.circle(
+        [27.0238, 74.2179], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 39900,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_c55e5df7075540e3920f6f7966635e00.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Rajasthan<li><bold>Confirmed cases  : 133<li><bold>Cured cases  : 3<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_9dd40969f3b546afadfc5b27c2d5e441 = L.circle(
+        [11.1271, 78.6569], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 92700,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_9dd40969f3b546afadfc5b27c2d5e441.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Tamil Nadu<li><bold>Confirmed cases  : 309<li><bold>Cured cases  : 6<li><bold>Death cases  : 1
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_57a1626bf9ba4e7fb630f555694167b5 = L.circle(
+        [18.1124, 79.0193], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 32100,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_57a1626bf9ba4e7fb630f555694167b5.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Telengana<li><bold>Confirmed cases  : 107<li><bold>Cured cases  : 1<li><bold>Death cases  : 3
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_1565130f1dba49b4a1d3a7b6de4e3f9a = L.circle(
+        [26.8467, 80.9462], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 33900,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_1565130f1dba49b4a1d3a7b6de4e3f9a.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Uttar Pradesh<li><bold>Confirmed cases  : 113<li><bold>Cured cases  : 14<li><bold>Death cases  : 2
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_7778bc04ea55480298f15579fad1e16b = L.circle(
+        [30.0668, 79.0193], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 3000,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_7778bc04ea55480298f15579fad1e16b.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : Uttarakhand<li><bold>Confirmed cases  : 10<li><bold>Cured cases  : 2<li><bold>Death cases  : 0
+                 </div>`, {
+            "sticky": true
+        }
+    );
+
+
+    var circle_44d2246df39d4722b5b48b383e057b58 = L.circle(
+        [22.9868, 87.855], {
+            "bubblingMouseEvents": true,
+            "color": "#e84545",
+            "dashArray": null,
+            "dashOffset": null,
+            "fill": "#e84545",
+            "fillColor": "#e84545",
+            "fillOpacity": 0.2,
+            "fillRule": "evenodd",
+            "lineCap": "round",
+            "lineJoin": "round",
+            "opacity": 1.0,
+            "radius": 15900,
+            "stroke": true,
+            "weight": 3
+        }
+    ).addTo(map_13cced48cde94dad9884568d26e57cd9);
+
+
+    circle_44d2246df39d4722b5b48b383e057b58.bindTooltip(
+        `<div>
+                     <li><bold>Name of State / UT : West Bengal<li><bold>Confirmed cases  : 53<li><bold>Cured cases  : 3<li><bold>Death cases  : 3
+                 </div>`, {
+            "sticky": true
+        }
+    );
+</script>

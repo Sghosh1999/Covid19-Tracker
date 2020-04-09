@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CovidTracker - FAQ</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- All CSS files -->
+    <link rel="stylesheet" href="{% static 'css/nav/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer/footer.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/main/main.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/faq/faq.css' %}">
+    <!-- CSS ends here -->
+</head>
+
+<body>
+    <!-- Navbar starts here -->
+    <div class="post-loader">
+        <nav id="top">
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+
+            <div class="nav">
+                <a href="{% url 'index' %}">
+                    <!-- <h1><i class="fas fa-user-md"></i> CovidTracker</h1> -->
+                    <img src="{% static '/images/finalLogo.png' %}" alt="" id="logo1">
+                </a>
+
+                <ul class="nav-links" id="myDiv">
+                    <li class="nav-item"><a href="{% url 'statistics' %}">Statistics</a></li>
+                    <li class="nav-item"><a href="{% url 'symptoms' %}">Symptoms</a></li>
+                    <li class="nav-item"><a href="{% url 'prevention' %}">Preventive Measures</a></li>
+                    <li class="nav-item"><a href="{% url 'map-stats' %}">Map Stats</a></li>
+                    <li class="nav-item"><a href="{% url 'prediction' %}">Prediction</a></li>
+                    <li class="nav-item active-link"><a href="{% url 'faq' %}">FAQ</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Navbar ends here -->
+
+        <div class="jumbotron">
+            <h2 class="text-center">Frequently Asked Questions (FAQ)</h2>
+        </div>
+
+        <div class="container mt-5 p-2">
+            <div class="sec card">
+                <div class="question">
+                    <p><span class="Q">Q.</span>
+                        How does COVID-19 spread?</p>
+                    <span class="arrow1" onclick="seeHideAnswer('1', 'q1')"><i class="fas fa-arrow-down"></i></span>
+                </div>
+                <div class="answer q1 hide">
+                    <p><span class="A">A.</span>
+                        People can catch COVID-19 from others who have the virus. The disease can spread from person to
+                        person through small droplets from the nose or mouth which are spread when a person with
+                        COVID-19 coughs or exhales. These droplets land on objects and surfaces around the person. Other
+                        people then catch COVID-19 by touching these objects or surfaces, then touching their eyes, nose
+                        or mouth. People can also catch COVID-19 if they breathe in droplets from a person with COVID-19
+                        who coughs out or exhales droplets. This is why it is important to stay more than 1 meter (3
+                        feet) away from a person who is sick. </p>
+                </div>
+            </div>
+
+            <div class="sec card mt-3">
+                <div class="question">
+                    <p><span class="Q">Q.</span>
+                        How likely am I to catch COVID-19?</p>
+                    <span class="arrow2" onclick="seeHideAnswer('2', 'q2')"><i class="fas fa-arrow-down"></i></span>
+                </div>
+                <div class="answer q2 hide">
+                    <p><span class="A">A.</span>
+                        The risk depends on where you are - and more specifically, whether there is a COVID-19 outbreak
+                        unfolding there. <br> <br>
+
+                        For most people in most locations the risk of catching COVID-19 is still low. However, there are
+                        now places around the world (cities or areas) where the disease is spreading. For people living
+                        in, or visiting, these areas the risk of catching COVID-19 is higher. Governments and health
+                        authorities are taking vigorous action every time a new case of COVID-19 is identified. Be sure
+                        to comply with any local restrictions on travel, movement or large gatherings. Cooperating with
+                        disease control efforts will reduce your risk of catching or spreading COVID-19.<br> <br>
+
+                        COVID-19 outbreaks can be contained and transmission stopped, as has been shown in China and
+                        some other countries. Unfortunately, new outbreaks can emerge rapidly. It’s important to be
+                        aware of the situation where you are or intend to go. WHO publishes daily updates on the
+                        COVID-19 situation worldwide. </p>
+                </div>
+            </div>
+
+            <div class="sec card mt-3">
+                <div class="question">
+                    <p><span class="Q">Q.</span>
+                        Can the coronavirus disease spread through air?</p>
+                    <span class="arrow3" onclick="seeHideAnswer('3', 'q3')"><i class="fas fa-arrow-down"></i></span>
+                </div>
+                <div class="answer q3 hide">
+                    <p><span class="A">A.</span>
+                        Airborne spread has not been reported for COVID-19 and it is not believed to be a major driver
+                        of transmission based on available evidence. </p>
+                </div>
+            </div>
+
+            <div class="sec card mt-3">
+                <div class="question">
+                    <p><span class="Q">Q.</span>
+                        Can you contract the coronavirus disease by touching a surface?</p>
+                    <span class="arrow4" onclick="seeHideAnswer('4', 'q4')"><i class="fas fa-arrow-down"></i></span>
+                </div>
+                <div class="answer q4 hide">
+                    <p><span class="A">A.</span>
+                        People could catch COVID-19 by touching contaminated surfaces or objects – and then touching
+                        their eyes, nose or mouth. </p>
+                </div>
+            </div>
+
+            <div class="sec card mt-3">
+                <div class="question">
+                    <p><span class="Q">Q.</span>
+                        What should you do if you think you have the coronavirus disease?</p>
+                    <span class="arrow5" onclick="seeHideAnswer('5', 'q5')"><i class="fas fa-arrow-down"></i></span>
+                </div>
+                <div class="answer q5 hide">
+                    <p><span class="A">A.</span>
+                        If you have fever, cough and difficulty breathing, seek medical care early. Stay home if you
+                        feel unwell. If you have a fever, cough and difficulty breathing, seek medical attention and
+                        call in advance. Follow the directions of your local health authority. </p>
+                </div>
+            </div>
+
+            <div class="sec card mt-3">
+                <div class="question">
+                    <p><span class="Q">Q.</span>
+                        Is the coronavirus disease more severe than the flu?</p>
+                    <span class="arrow6" onclick="seeHideAnswer('6', 'q6')"><i class="fas fa-arrow-down"></i></span>
+                </div>
+                <div class="answer q6 hide">
+                    <p><span class="A">A.</span>
+                        COVID-19 causes more severe disease than seasonal influenza. <br><br>
+
+                        While many people globally have built up immunity to seasonal flu strains, COVID-19 is a new
+                        virus to which no one has immunity. That means more people are susceptible to infection, and
+                        some will suffer severe disease. <br><br>
+
+                        Globally, about 3.4% of reported COVID-19 cases have died. By comparison, seasonal flu generally
+                        kills far fewer than 1% of those infected. </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- footer Starts here -->
+        <footer class="footer mt-5">
+            <div class="info-foot">
+                <div class="name">
+                    <h3>CovidTracker</h3>
+                </div>
+                <div class="line-foot"></div>
+                <div class="links-foot">
+                    <a href="{% url 'symptoms' %}">Symptoms</a>
+                    <a href="{% url 'prevention' %}">Preventive Measures</a>
+                    <a href="{% url 'faq' %}">FAQ</a>
+                </div>
+            </div>
+            <div class="name-foot">
+                <p>covidtracker.com 2020 All Rights Reserved.</p>
+            </div>
+        </footer>
+        <!-- Footer ends here -->
+
+        <script src="{% static 'js/nav.js' %}"></script>
+        <script src="{% static 'js/faq.js' %}"></script>
+</body>
+
+</html>

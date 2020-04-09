@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  // #logo {
+  //   width: 170px;
+  //   height: 130px;
+  // }
+
+  #logo1 {
+    width: 170px;
+    height: 110px;
+  }
+  
+  nav {
+    // background: #0F2027;
+    // /* fallback for old browsers */
+    // background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    // /* Chrome 10-25, Safari 5.1-6 */
+    // background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+    // /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #192A56;
+    height: 12vh;
+    z-index: 100;
+    position: sticky;
+    top: 0;
+  
+    .nav-links {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        list-style: none;
+        width: 50%;
+        height: 0%;
+        margin-left: auto;
+    }
+  
+    .nav-item {
+        a {
+            text-decoration: none;
+            color: #fff;
+  
+            &:hover {
+                color: #ddd;
+            }
+        }
+    }
+
+    .active-link {
+     border-bottom: 2px solid red;
+     font-weight: bold;
+    }
+  
+    .nav {
+      display: flex;
+      padding: 20px;
+
+      a {
+        text-decoration: none;
+      }
+
+      h1 {
+        font-weight: 400;
+        color: #fff;
+        font-size: 30px;
+      }
+    }
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    #logo1 {
+      width: 170px;
+      height: 115px;
+    }
+
+    nav {
+       // position: relative;
+        width: 100%;
+        // background: #0F2027;
+        // /* fallback for old browsers */
+        // background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
+        // /* Chrome 10-25, Safari 5.1-6 */
+        // background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+        // /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: #192A56;
+  
+        h1 {
+          padding: 20px;
+        }
+  
+        .nav-links {
+            position: fixed;
+            // background: #0F2027;
+            // /* fallback for old browsers */
+            // background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
+            // /* Chrome 10-25, Safari 5.1-6 */
+            // background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+            // /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: #192A56;
+            width: 100%;
+            height: 100vh;
+            flex-direction: column;
+            clip-path: circle(10px at 90% -10%);
+            -webkit-clip-path: circle(10px at 90% -10%);
+            transition: all 1s ease-out;
+            pointer-events: none;
+  
+            &.open {
+                clip-path: circle(1000px at 90% -10%);
+                -webkit-clip-path: circle(1000px at 90% -10%);
+                pointer-events: all;
+            }
+  
+            a {
+                font-size: 18px;
+            }
+        }
+  
+        .line {
+            width: 30px;
+            height: 3px;
+            background: #fff;
+            margin: 5px;
+        }
+  
+        .hamburger {
+            cursor: pointer;
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translate(-5%, -50%);
+            z-index: 2;
+        }
+  
+        .nav {
+          padding: 0px;
+        }
+    }
+  }
+  

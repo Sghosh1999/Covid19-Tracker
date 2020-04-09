@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CovidTracker - Preventive Measures</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- All CSS files -->
+    <link rel="stylesheet" href="{% static 'css/nav/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/prevention/prevention.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
+    <!-- CSS ends here -->
+</head>
+
+<body>
+    <!-- Navbar starts here -->
+    <nav>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div class="nav">
+            <a href="{% url 'index' %}">
+                <img src="{% static '/images/finalLogo.png' %}" alt="" id="logo1">
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="{% url 'statistics' %}">Statistics</a></li>
+                <li class="nav-item"><a href="{% url 'symptoms' %}">Symptoms</a></li>
+                <li class="nav-item active-link"><a href="{% url 'prevention' %}">Preventive Measures</a></li>
+                <li class="nav-item"><a href="{% url 'map-stats' %}">Map Stats</a></li>
+                <li class="nav-item"><a href="{% url 'prediction' %}">Prediction</a></li>
+                <li class="nav-item"><a href="{% url 'faq' %}">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar ends here -->
+    <!-- Preventive Measures starts here -->
+    <div class="prevention">
+        <h2>Prevention is better than cure.</h2>
+        <div class="measures">
+            <div class="m1">
+                <p>1. Wash your hands regularly with soap and water, or clean them with alcohol-based hand rub. </p>
+                <img src="{% static '/images/handwash.png' %}" alt="" id="m1-img">
+            </div>
+            <div class="m2">
+                <p>2. Maintain at least 1 metre distance between you and people coughing or sneezing. </p>
+                <img src="{% static '/images/distance.png' %}" alt="" id="m1-img">
+            </div>
+            <div class="m3">
+                <p>3. Avoid touching your face. </p>
+                <img src="{% static '/images/facetouch.png' %}" alt="" id="m1-img">
+            </div>
+            <div class="m4">
+                <p>4. Cover your mouth and nose when coughing or sneezing. </p>
+                <img src="{% static '/images/cough.png' %}" alt="" id="m1-img">
+            </div>
+            <div class="m5">
+                <p>5. Stay home if you feel unwell.</p>
+                <img src="{% static '/images/stay-home.png' %}" alt="" id="m1-img">
+            </div>
+            <div class="m6">
+                <p>6. Refrain from smoking and other activities that weaken the lungs. </p>
+                <img src="{% static '/images/smoke.png' %}" alt="" id="m1-img">
+            </div>
+        </div>
+    </div>
+    <!-- Preventive Measures ends here -->
+
+    <!-- footer Starts here -->
+    <footer class="footer mt-5">
+        <div class="info-foot">
+            <div class="name">
+                <h3>CovidTracker</h3>
+            </div>
+            <div class="line-foot"></div>
+            <div class="links-foot">
+                <a href="{% url 'symptoms' %}">Symptoms</a>
+                <a href="{% url 'prevention' %}">Preventive Measures</a>
+                <a href="{% url 'faq' %}">FAQ</a>
+            </div>
+        </div>
+        <div class="name-foot">
+            <p>covidtracker.com 2020 All Rights Reserved.</p>
+        </div>
+    </footer>
+    <!-- Footer ends here -->
+
+    <script src="{% static 'js/nav.js' %}"></script>
+</body>
+
+</html>

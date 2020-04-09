@@ -1,0 +1,38 @@
+.graph-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.grap-stat-header {
+  background: #dfe6e9;
+  width: 100%;
+  padding: 4px;
+  margin: 7px 0;
+}
+
+.hide1 {
+  visibility: hidden;
+  height: 0 !important;
+  overflow: hidden;
+}
+
+.g2, .g3, .g4, .g5, .g6, .g7 {
+  height: 80%;
+}
+
+@media screen and (max-width: 768px) {
+  .graph-body {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .grap-stat-header {
+    font-size: 16px;
+  }
+}
+/*# sourceMappingURL=statistics.css.map */

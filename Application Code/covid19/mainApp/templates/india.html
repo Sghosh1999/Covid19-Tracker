@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CovidTracker - Symptoms</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- All CSS files -->
+    <link rel="stylesheet" href="{% static 'css/nav/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/symptoms/symptoms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main/main.css' %}">
+    <!-- CSS ends here -->
+</head>
+
+<body>
+    <!-- Navbar starts here -->
+    <nav>
+        <div class="hamburger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div class="nav">
+            <a href="{% url 'index' %}">
+                <h1>CovidTracker</h1>
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="{% url 'statistics' %}">Statistics</a></li>
+                <li class="nav-item"><a href="{% url 'symptoms' %}">Symptoms</a></li>
+                <li class="nav-item"><a href="{% url 'prevention' %}">Preventive Measures</a></li>
+                <li class="nav-item"><a href="{% url 'map-stats' %}">Map Stats</a></li>
+                <li class="nav-item"><a href="{% url 'prediction' %}">Prediction</a></li>
+                <li class="nav-item"><a href="{% url 'prevention' %}">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navbar ends here -->
+
+
+    <!-- footer Starts here -->
+    <footer class="footer mt-5">
+        <div class="info-foot">
+            <div class="name">
+                <h3>CovidTracker</h3>
+            </div>
+            <div class="line-foot"></div>
+            <div class="links-foot">
+                <a href="{% url 'symptoms' %}">Symptoms</a>
+                <a href="{% url 'prevention' %}">Preventive Measures</a>
+                <a href="{% url 'prevention' %}">FAQ</a>
+            </div>
+        </div>
+        <div class="name-foot">
+            <p>covidtracker.com 2020 All Rights Reserved.</p>
+        </div>
+    </footer>
+    <!-- Footer ends here -->
+
+    <script src="{% static 'js/nav.js' %}"></script>
+</body>
+
+</html>

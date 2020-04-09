@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#logo1 {
+  width: 170px;
+  height: 110px;
+}
+
+nav {
+  background: #192A56;
+  height: 12vh;
+  z-index: 100;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+nav .nav-links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+  width: 50%;
+  height: 0%;
+  margin-left: auto;
+}
+
+nav .nav-item a {
+  text-decoration: none;
+  color: #fff;
+}
+
+nav .nav-item a:hover {
+  color: #ddd;
+}
+
+nav .active-link {
+  border-bottom: 2px solid red;
+  font-weight: bold;
+}
+
+nav .nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 20px;
+}
+
+nav .nav a {
+  text-decoration: none;
+}
+
+nav .nav h1 {
+  font-weight: 400;
+  color: #fff;
+  font-size: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  #logo1 {
+    width: 170px;
+    height: 115px;
+  }
+  nav {
+    width: 100%;
+    background: #192A56;
+  }
+  nav h1 {
+    padding: 20px;
+  }
+  nav .nav-links {
+    position: fixed;
+    background: #192A56;
+    width: 100%;
+    height: 100vh;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    clip-path: circle(10px at 90% -10%);
+    -webkit-clip-path: circle(10px at 90% -10%);
+    -webkit-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+    pointer-events: none;
+  }
+  nav .nav-links.open {
+    clip-path: circle(1000px at 90% -10%);
+    -webkit-clip-path: circle(1000px at 90% -10%);
+    pointer-events: all;
+  }
+  nav .nav-links a {
+    font-size: 18px;
+  }
+  nav .line {
+    width: 30px;
+    height: 3px;
+    background: #fff;
+    margin: 5px;
+  }
+  nav .hamburger {
+    cursor: pointer;
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    -webkit-transform: translate(-5%, -50%);
+            transform: translate(-5%, -50%);
+    z-index: 2;
+  }
+  nav .nav {
+    padding: 0px;
+  }
+}
+/*# sourceMappingURL=nav.css.map */
