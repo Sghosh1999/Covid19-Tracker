@@ -89,7 +89,6 @@ List of team member names and email IDs with their contributions
 | Shayan Chatterjee [Leader] | shayanchatterjee7@gmail.com  | Complete frontend of the website                                        |
 | Abhinandan Purkait         | purkaitabhinandan@gmail.com  | complete backend,integration of all modules in django, hosting          |
 | Sayantan Ghosh             | gsayantan1999@gmail.com      | Cleaning of gathered user data, implementation of all graphs and models |
-| Soujanna Dutta             | soujanna2015newera@gmail.com | Implementation of the graphs and models                                 |
 
 #### Screensnaps of the main app
 
