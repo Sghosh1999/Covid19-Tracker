@@ -22,7 +22,7 @@ kiwisolver==1.2.0
 lxml==4.5.0
 matplotlib==3.2.1
 nltk==3.4.5
-numpy==1.18.0
+numpy==1.22.0
 opencv-python==4.1.2.30
 pandas==1.0.1
 pathspec==0.6.0
